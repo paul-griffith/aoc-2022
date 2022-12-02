@@ -1,17 +1,28 @@
+fun caloriesByElf(input: Sequence<String>): List<Int> {
+    return buildList {
+        val currentElf = mutableListOf<Int>()
+        for (line in input) {
+            if (line.isBlank()) {
+                add(currentElf.sum())
+                currentElf.clear()
+            } else {
+                currentElf += line.toInt()
+            }
+        }
+    }
+}
+
+fun part1(caloriesByElf: List<Int>): Int {
+    return caloriesByElf.max()
+}
+
+fun part2(caloriesByElf: List<Int>): Int {
+    return caloriesByElf.sortedDescending().take(3).sum()
+}
+
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
-    }
+    val caloriesByElf = caloriesByElf(readInput("day01"))
 
-    fun part2(input: List<String>): Int {
-        return input.size
-    }
-
-    // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
-
-    val input = readInput("Day01")
-    println(part1(input))
-    println(part2(input))
+    println(part1(caloriesByElf))
+    println(part2(caloriesByElf))
 }
