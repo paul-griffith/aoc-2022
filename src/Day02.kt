@@ -5,7 +5,7 @@ import Hand.Paper
 import Hand.Rock
 import Hand.Scissors
 
-enum class Hand(val score: Int) {
+private enum class Hand(val score: Int) {
     Rock(1),
     Paper(2),
     Scissors(3);
@@ -20,7 +20,7 @@ enum class Hand(val score: Int) {
     }
 }
 
-enum class Outcome(val score: Int) {
+private enum class Outcome(val score: Int) {
     Lose(0),
     Draw(3),
     Win(6);
@@ -41,7 +41,7 @@ enum class Outcome(val score: Int) {
     }
 }
 
-data class Round(val theirMove: Hand, val yourMove: Hand) {
+private data class Round(val theirMove: Hand, val yourMove: Hand) {
     constructor(theirChar: Char, yourChar: Char) : this(
         Hand.fromChar(theirChar),
         Hand.fromChar(yourChar)
