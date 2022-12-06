@@ -1,14 +1,8 @@
 fun main() {
     fun findMarker(input: String, bufferSize: Int): Int {
-        var buffer = input.slice(0..bufferSize)
-        for ((i, char) in input.drop(bufferSize).withIndex()) {
-            buffer += char
-            buffer = buffer.slice(1..bufferSize)
-            if (buffer.length == bufferSize && buffer.toSet().size == bufferSize) {
-                return i + bufferSize + 1
-            }
-        }
-        return -1
+        return input.windowedSequence(bufferSize).indexOfFirst {
+            it.toSet().size == bufferSize
+        } + bufferSize
     }
 
     fun part1(lines: Sequence<String>): Int {
